@@ -12,7 +12,7 @@ COMMENT
 # }
 # =========属性=========
 function prop_length () {
-    arr=$1
+    local arr=$1
     echo ${#arr[@]}
 }
 
@@ -21,7 +21,7 @@ function prop_length () {
 # @param arr 数组元素
 # @return 所有数组元素
 function toString () {
-    arr=$1
+    local arr=$1
     echo ${arr[@]}
 }
 
@@ -30,8 +30,8 @@ function toString () {
 # @param item 被追加的元素
 # @return  改变后的数组
 function push () {
-    arr=$1
-    item=$2
+    local arr=$1
+    local item=$2
     arr=(${arr[@]} $item)
     echo $arr
 }
@@ -40,8 +40,8 @@ function push () {
 # @param index 被删除元素的索引
 # @return  改变后的数组
 function deleteByIndex () {
-    arr=$1
-    index=$2
+    local arr=$1
+    local index=$2
     unset $arr[$index]
     echo $arr
 }
@@ -50,9 +50,9 @@ function deleteByIndex () {
 # @param endIndex 结束索引
 # @return  变量名  变量含义
 function slice () {
-    arr=$1
-    startIndex=$2
-    endIndex=$3
+    local arr=$1
+    local startIndex=$2
+    local endIndex=$3
     echo ${arr[@]:$startIndex:$endIndex}
 }
 

@@ -6,8 +6,8 @@
 @param suffix 目标文件后缀
 COMMENT
 function glob () {
-    targetDir=$1
-    suffix=$2
+    local targetDir=$1
+    local suffix=$2
     for shFilename in `ls $targetDir | grep .${suffix}`
     do 
     source "${targetDir}/${shFilename}"
