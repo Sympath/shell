@@ -1,16 +1,10 @@
 #!/bin/sh
 # 本地SSH设置远程服务器别名
-
-# 读取配置文件
-# 方法1 sed
-# id=`sed '/^ID=/!d;s/.*=//' config`
-# ip=`sed '/^IP=/!d;s/.*=//' config`
-# 方法2 while语句赋值的操作 这个要注意配置文件的结尾一定要多个空行
-while read line;do
-    eval "$line"
-done < ./sh/config
-# 方法3 直接生成环境变量
-# source config
+# 使用方法：sh ./ssh-noAuth-local.sh [别名] [ip] 
+# 示例：sh ./ssh-noAuth-local.sh fq 124.223.43.155
+host=$1
+ip=$2
+password=$3
 cat >> ~/.ssh/config << EOF
 Host ${host}
   HostName ${ip}
@@ -18,10 +12,10 @@ Host ${host}
   User root
   IdentityFile ~/.ssh/id_rsa
 EOF
-
+ Lfq@1781 ssh root@42.192.195.160
 cd ~/.ssh
 ssh-copy-id -i id_rsa.pub -p 22 root@${ip} << EOF
-Lfq12345
+${password}
 EOF
 # 设置自动passphrase
 ssh-add
