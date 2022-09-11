@@ -11,9 +11,11 @@ source "../index.sh"
 # git
 params=(`getParams $*`)
 echo params====${params[@]}
-# if [[  ]]; then
+hasGit=`arr_includes params git`
+if boolean $hasGit; then
 # source ../install/git/git.sh
-# fi
+echo '包含git'
+fi
 
 ## cat ~/.ssh/id_rsa.pub  这个公钥放在你自己的github上
 # echo $#

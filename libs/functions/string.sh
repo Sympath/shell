@@ -42,5 +42,6 @@ function split () {
     IFS=$BAK_IFS
     echo ${FILE_LIST[@]}
 }
+
 # str="a b"
 # split "$str"

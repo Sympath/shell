@@ -47,6 +47,18 @@ function toString () {
     echo ${innerArr[@]}
 }
 
+function arr_includes () {
+    local name=$1
+    eval local innerArr=(\${${name}[@]})
+    local item=$2
+    if [[ "${innerArr[@]}"  =~ "${item}" ]]; then
+        echo 0
+    else
+        echo 1
+    fi
+}
+
+
 # 追加元素
 # @param arr 数组名
 # @param item 被追加的元素
