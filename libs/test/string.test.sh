@@ -5,6 +5,9 @@ basename=`basename $0`
 testShFile=${basename%.test*}.sh
 source "../functions/${testShFile}"
 
+includesResult=(`includes a_b _`) # 0
+echo $includesResult
+
 result=(`split a_b _`)
 echo ${result[@]}
 # 执行完成后切换会上一次目录 相当于 `cd OLDPWD`

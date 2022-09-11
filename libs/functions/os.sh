@@ -1,6 +1,9 @@
-#!/bin/bash
-# 获取当前系统类型
-# @return  platForm
+<<'COMMENT'
+!/bin/bash
+获取当前系统类型
+@case platForm=$(getPlatForm) 获取当前的系统类型
+@return  mac|win|linux
+COMMENT
 function getPlatForm() {
     local innerPlatForm
     if [[ $(uname) == 'Darwin' ]]; then

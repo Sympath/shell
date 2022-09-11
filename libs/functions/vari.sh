@@ -1,6 +1,9 @@
-# 类型判断：支持函数、整数
-# @param 判断类型 Function Number
-# @return 0 | 1
+<<'COMMENT'
+类型判断：支持函数、整数
+@case  resultFunctionA=`typeCheck Function functionA`  判断变量functionA是不是函数类型
+@param 判断类型 Function Number
+# @return 0 正确 | 1 错误
+COMMENT
 function typeCheck () {
     local type=$1;
     local vari=$2;
