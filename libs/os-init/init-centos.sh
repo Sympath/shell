@@ -10,16 +10,15 @@ source "../index.sh"
 # yum update -y
 # git
 params=(`getParams $*`)
-echo params====${params[@]}
 hasGit=`arr_includes params git`
 if boolean $hasGit; then
 # source ../install/git/git.sh
 echo '包含git'
 fi
-
-## cat ~/.ssh/id_rsa.pub  这个公钥放在你自己的github上
-# echo $#
-# echo $0
-
-#==== node npm（使用nvm） 
+hasNVM=`arr_includes params nvm`
+if boolean $hasNVM; then
+# ==== node npm（使用nvm
 # source ../install/nvm.sh
+echo '包含Nvm'
+fi
+
