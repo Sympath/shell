@@ -18,7 +18,6 @@ function Array_form () {
     function $arrName.length () {
         echo ${#arrName[@]}
     }
-    
 }
 # =========属性=========
 <<'COMMENT'
@@ -51,7 +50,7 @@ function toString () {
 # 追加元素
 # @param arr 数组名
 # @param item 被追加的元素
-# @return  改变后的数组
+# @return  改变后的数组字符串
 function push() {
     # 获取数组名
     local name=$1
@@ -70,15 +69,15 @@ function push() {
 # 通过下标索引删除一个元素
 # @param arr 数组
 # @param index 被删除元素的索引
-# @return  改变后的数组
+# @return  改变后的数组字符串
 function deleteByIndex () {
     # 获取数组名
     local name=$1
     # 获取数组内容，创造一个对应的内部数组
     eval local innerArr=(\${${name}[@]})
     local index=$2
-    unset $innerArr[$index]
-    echo $innerArr
+    unset innerArr[$index]
+    echo ${innerArr[@]}
 }
 <<'COMMENT'
 数组截取 顾前不顾后
@@ -94,6 +93,27 @@ function slice () {
     local startIndex=$2
     local endIndex=$3
     echo ${innerArr[@]:$startIndex:$endIndex}
+}
+
+<<'COMMENT'
+数组循环
+@case  
+    arr=(a b c)
+    callback() {
+        local item=$1
+        local index=$2
+        echo "${item}===${index}" ~/callback
+    }
+@param  这里参数名  这里参数含义
+@return  变量名  例子
+COMMENT
+function forEach () {
+    local name=$1
+    eval local innerArr=(\${${name}[@]})
+    local cb=$2;
+    for(( i=0;i<${#innerArr[@]};i++)) do
+        "${cb}" "${innerArr[i]}" ${i}
+    done;
 }
 
 <<'COMMENT'
